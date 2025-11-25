@@ -221,7 +221,7 @@ export default function Home() {
               variant="outline"
               size="lg"
               className="rounded-full text-base sm:text-lg px-6 sm:px-8 h-12 sm:h-14 bg-transparent"
-              onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => document.getElementById("how")?.scrollIntoView({ behavior: "smooth" })}
             >
               See How It Works
             </Button>
@@ -243,14 +243,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* How It Works - Enhanced with Interactive Demo */}
       <section id="how" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center mb-12 sm:mb-16 md:mb-24 text-balance tracking-tight">
-            Three simple steps
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center mb-8 text-balance tracking-tight">
+            See how it works
           </h2>
+          <p className="text-center text-lg text-muted-foreground mb-12 sm:mb-16 max-w-2xl mx-auto">
+            Experience how we transform conversations into lasting legacies
+          </p>
 
-          <div className="grid md:grid-cols-3 gap-8 sm:gap-12 md:gap-16">
+          {/* Interactive Steps */}
+          <div className="grid md:grid-cols-3 gap-8 sm:gap-12 md:gap-16 mb-16 sm:mb-24">
             <div className="space-y-4 sm:space-y-6">
               <div className="text-5xl sm:text-6xl md:text-7xl font-serif text-primary/20">01</div>
               <h3 className="font-serif text-2xl sm:text-3xl">Record</h3>
@@ -273,6 +277,91 @@ export default function Home() {
               <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                 Keep everything safe in your private family archive, accessible whenever you need to feel close.
               </p>
+            </div>
+          </div>
+
+          <div className="max-w-4xl mx-auto bg-gradient-to-br from-accent/5 to-secondary/10 rounded-2xl p-8 sm:p-12 border border-primary/10">
+            <div className="text-center mb-8">
+              <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+                Experience Sample
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl mb-3">Meet Sofia's grandmother, Maria</h3>
+              <p className="text-muted-foreground">See how her family preserved her stories for generations to come</p>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-background rounded-xl p-6 shadow-sm">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="flex-1">
+                    <p className="font-medium mb-2">Her secret apple pie recipe</p>
+                    <p className="text-sm text-muted-foreground mb-3">Recorded April 2024</p>
+                    <audio controls className="w-full" preload="metadata">
+                      <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Reconnect%20Generations-ERfDvMErr0Bffa132Z7lGubhaStai8.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+                </div>
+              </div>
+
+              {/* AI Persona Questions */}
+              <div className="bg-background rounded-xl p-6 shadow-sm">
+                <p className="font-medium mb-4">Ask Maria's AI persona anything:</p>
+                <div className="space-y-3">
+                  <div className="bg-accent/10 rounded-lg p-3 text-sm">
+                    "What was your childhood like during the war?"
+                  </div>
+                  <div className="bg-accent/10 rounded-lg p-3 text-sm">"How did you meet grandpa?"</div>
+                  <div className="bg-accent/10 rounded-lg p-3 text-sm">
+                    &quot;What life advice can you give me grandma?&quot;
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-4 italic">
+                  The AI persona learns from recorded conversations to answer questions in Maria's own voice and style
+                </p>
+              </div>
+
+              {/* Memory Collection */}
+              <div className="bg-background rounded-xl p-6 shadow-sm">
+                <p className="font-medium mb-4">Memory collection includes:</p>
+                <div className="grid grid-cols-2 gap-3 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    12 audio recordings
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    47 photographs
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Written stories
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Family recipes
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center mt-8">
+              <a
+                href="#pricing"
+                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
+              >
+                Start your family's legacy
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
@@ -637,6 +726,118 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Multi-language support section */}
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-secondary/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-6 text-balance">
+              We speak your family's language
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Record and preserve memories in any of 24 EU languages. Our AI understands and responds naturally in your
+              native tongue.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇧🇬</div>
+              <p className="text-sm font-medium">Bulgarian</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇭🇷</div>
+              <p className="text-sm font-medium">Croatian</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇨🇿</div>
+              <p className="text-sm font-medium">Czech</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇩🇰</div>
+              <p className="text-sm font-medium">Danish</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇳🇱</div>
+              <p className="text-sm font-medium">Dutch</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇪🇪</div>
+              <p className="text-sm font-medium">Estonian</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇫🇮</div>
+              <p className="text-sm font-medium">Finnish</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇫🇷</div>
+              <p className="text-sm font-medium">French</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇩🇪</div>
+              <p className="text-sm font-medium">German</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇬🇷</div>
+              <p className="text-sm font-medium">Greek</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇭🇺</div>
+              <p className="text-sm font-medium">Hungarian</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇮🇪</div>
+              <p className="text-sm font-medium">Irish</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇮🇹</div>
+              <p className="text-sm font-medium">Italian</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇱🇻</div>
+              <p className="text-sm font-medium">Latvian</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇱🇹</div>
+              <p className="text-sm font-medium">Lithuanian</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇲🇹</div>
+              <p className="text-sm font-medium">Maltese</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇵🇱</div>
+              <p className="text-sm font-medium">Polish</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇵🇹</div>
+              <p className="text-sm font-medium">Portuguese</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇷🇴</div>
+              <p className="text-sm font-medium">Romanian</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇸🇰</div>
+              <p className="text-sm font-medium">Slovak</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇸🇮</div>
+              <p className="text-sm font-medium">Slovenian</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇪🇸</div>
+              <p className="text-sm font-medium">Spanish</p>
+            </div>
+            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+              <div className="text-2xl mb-2">🇸🇪</div>
+              <p className="text-sm font-medium">Swedish</p>
+            </div>
+          </div>
+
+          <p className="text-center text-sm text-muted-foreground mt-8 italic">More languages coming soon</p>
         </div>
       </section>
 
