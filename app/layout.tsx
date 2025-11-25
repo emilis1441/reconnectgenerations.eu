@@ -39,6 +39,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-WMF9256WQC" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WMF9256WQC');
+          `}
+        </Script>
+
         <Script id="facebook-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
