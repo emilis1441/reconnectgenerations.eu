@@ -4,28 +4,19 @@ import { Playfair_Display, Inter } from "next/font/google"
 import Script from "next/script"
 import "./globals.css"
 
-/* Using sophisticated serif font for headings and clean sans-serif for body */
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" })
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
 export const metadata: Metadata = {
   title: "ReconnectGenerations | Preserve Your Family Legacy",
-  description: "A timeless place to preserve your parents' stories, wisdom, and voice for future generations.",
+  description:
+    "A timeless place to preserve your parents' stories, wisdom, and voice for future generations.",
   generator: "v0.app",
   icons: {
     icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
+      { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
+      { url: "/icon-dark-32x32.png", media: "(prefers-color-scheme: dark)" },
+      { url: "/icon.svg", type: "image/svg+xml" },
     ],
     apple: "/apple-icon.png",
   },
@@ -39,7 +30,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-WMF9256WQC" strategy="afterInteractive" />
+        {/* Google Analytics */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-WMF9256WQC"
+          strategy="afterInteractive"
+        />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -49,6 +45,7 @@ export default function RootLayout({
           `}
         </Script>
 
+        {/* Meta Pixel */}
         <Script id="facebook-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -63,6 +60,12 @@ export default function RootLayout({
             fbq('track', 'PageView');
           `}
         </Script>
+      </head>
+
+      <body className={`${playfair.variable} ${inter.variable} font-sans antialiased`}>
+        {children}
+
+        {/* Meta Pixel fallback image */}
         <noscript>
           <img
             height="1"
@@ -72,8 +75,7 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-      </head>
-      <body className={`${playfair.variable} ${inter.variable} font-sans antialiased`}>{children}</body>
+      </body>
     </html>
   )
 }
