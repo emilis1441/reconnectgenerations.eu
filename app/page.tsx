@@ -1,6 +1,8 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import React from "react"
+
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -181,58 +183,222 @@ function PlayIcon() {
   )
 }
 
+function SampleMemoryExperience() {
+  const stories = [
+    {
+      question: "Her secret apple pie recipe",
+      audio: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Reconnect%20Generations-ERfDvMErr0Bffa132Z7lGubhaStai8.mp3",
+      date: "Recorded 2025-10-12",
+      type: "file" as const,
+    },
+    {
+      question: "What was your childhood like during the war?",
+      audio: "/audio/childhood-during-war.mp3",
+      date: "Recorded 2024-03-15",
+      type: "file" as const,
+    },
+    {
+      question: "How did you meet grandpa?",
+      audio: "/audio/love-story.mp3",
+      date: "Recorded 2024-06-22",
+      type: "file" as const,
+    },
+    {
+      question: "What life advice can you give me grandma?",
+      audio: "https://soundcloud.com/emilis-585379406/life-advice",
+      date: "Recorded 2024-08-10",
+      type: "soundcloud" as const,
+    },
+  ]
+
+  const [currentStory, setCurrentStory] = React.useState(stories[0])
+
+  const handleStoryClick = (story: (typeof stories)[0]) => {
+    setCurrentStory(story)
+    if (story.type === "file") {
+      // Give React time to update the DOM, then play
+      setTimeout(() => {
+        const audioElement = document.querySelector("#story-player") as HTMLAudioElement
+        if (audioElement) {
+          audioElement.load()
+          audioElement.play().catch((err) => console.log("[v0] Play prevented:", err))
+        }
+      }, 100)
+    }
+  }
+
+  return (
+    <section id="how" className="py-16 sm:py-24 bg-secondary/30">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+              Experience Sample
+            </span>
+            <h3 className="font-serif text-2xl sm:text-3xl mb-3">Meet Sofia's grandmother, Maria</h3>
+            <p className="text-muted-foreground">See how her family preserved her stories for generations to come</p>
+          </div>
+
+          <div className="space-y-6">
+            {/* Single Shared Audio Player */}
+            <div className="bg-background rounded-xl p-6 shadow-sm">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                <p className="text-sm text-primary font-medium">Now Playing</p>
+              </div>
+              <p className="font-medium mb-2 text-lg">{currentStory.question}</p>
+              <p className="text-sm text-muted-foreground mb-4">{currentStory.date}</p>
+
+              {currentStory.type === "soundcloud" ? (
+                <iframe
+                  width="100%"
+                  height="166"
+                  scrolling="no"
+                  frameBorder="no"
+                  allow="autoplay"
+                  src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(currentStory.audio)}&color=%23b88b74&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false`}
+                  className="rounded-lg"
+                ></iframe>
+              ) : (
+                <audio
+                  id="story-player"
+                  key={currentStory.audio}
+                  controls
+                  className="w-full rounded-lg"
+                  preload="metadata"
+                >
+                  <source src={currentStory.audio} type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+              )}
+            </div>
+
+            {/* Story Selection Buttons */}
+            <div className="bg-background rounded-xl p-6 shadow-sm">
+              <p className="font-medium mb-4">Listen to Maria's stories:</p>
+              <div className="space-y-2">
+                {stories.map((story, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleStoryClick(story)}
+                    className={`w-full text-left p-4 rounded-lg border-2 transition-all hover:border-primary/50 hover:bg-primary/5 ${
+                      currentStory.audio === story.audio
+                        ? "border-primary bg-primary/10"
+                        : "border-border bg-background"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`flex-shrink-0 ${currentStory.audio === story.audio ? "text-primary" : "text-muted-foreground"}`}
+                      >
+                        {currentStory.audio === story.audio ? (
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                          </svg>
+                        ) : (
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        )}
+                      </div>
+                      <span
+                        className={`font-medium ${currentStory.audio === story.audio ? "text-primary" : "text-foreground"}`}
+                      >
+                        {story.question}
+                      </span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* AI Persona Questions */}
+            <div className="bg-background rounded-xl p-6 shadow-sm">
+              <p className="font-medium mb-4">Ask Maria's AI persona anything:</p>
+              <div className="space-y-3">
+                <div className="bg-accent/10 rounded-lg p-3 text-sm">
+                  "Tell me about your favorite family tradition"
+                </div>
+                <div className="bg-accent/10 rounded-lg p-3 text-sm">"What was life like when you were my age?"</div>
+                <div className="bg-accent/10 rounded-lg p-3 text-sm">
+                  "Can you tell me more about that apple pie recipe?"
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground mt-4 italic">
+                The AI persona learns from recorded conversations to answer questions in Maria's own voice and style
+              </p>
+            </div>
+
+            {/* Memory Collection */}
+            <div className="bg-background rounded-xl p-6 shadow-sm">
+              <p className="font-medium mb-4">Memory collection includes:</p>
+              <div className="grid grid-cols-2 gap-3 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  12 audio recordings
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  47 photographs
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Written stories
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Family recipes
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-8">
+            <a
+              href="#pricing"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
+            >
+              Start your family's legacy
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function Home() {
   const [scrollY, setScrollY] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const audioRef = useRef<HTMLAudioElement>(null)
-  const [currentStory, setCurrentStory] = useState({
-    title: "Her secret apple pie recipe",
-    date: "Recorded April 2024",
-    audio: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Reconnect%20Generations-ERfDvMErr0Bffa132Z7lGubhaStai8.mp3",
-  })
 
-  const stories = [
+  const additionalStories = [
     {
       question: "What was your childhood like during the war?",
-      title: "What was your childhood like during the war?",
-      date: "Recorded March 2024",
+      date: "Recorded 2025-09-03",
       audio: "/audio/childhood-during-war.mp3",
     },
     {
       question: "How did you meet grandpa?",
-      title: "How did you meet grandpa?",
-      date: "Recorded May 2024",
+      date: "Recorded 2025-09-10",
       audio: "/audio/love-story.mp3",
     },
     {
       question: "What life advice can you give me grandma?",
-      title: "What life advice can you give me grandma?",
-      date: "Recorded June 2024",
+      date: "Recorded 2025-09-18",
       audio: "/audio/life-advice.mp3",
     },
   ]
-
-  const handleStoryClick = async (story: (typeof stories)[0]) => {
-    const audioElement = audioRef.current
-    if (!audioElement) return
-
-    // Pause current playback first
-    audioElement.pause()
-
-    // Update the story state
-    setCurrentStory(story)
-
-    // Small delay to ensure React has updated the source
-    await new Promise((resolve) => setTimeout(resolve, 50))
-
-    // Load and play the new audio
-    try {
-      audioElement.load()
-      await audioElement.play()
-    } catch (error) {
-      console.log("[v0] Audio play prevented:", error)
-    }
-  }
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -410,146 +576,7 @@ export default function Home() {
       </section>
 
       {/* How It Works - Enhanced with Interactive Demo */}
-      <section id="how" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center mb-8 text-balance tracking-tight">
-            See how it works
-          </h2>
-          <p className="text-center text-lg text-muted-foreground mb-12 sm:mb-16 max-w-2xl mx-auto">
-            Experience how we transform conversations into lasting legacies
-          </p>
-
-          {/* Interactive Steps */}
-          <div className="grid md:grid-cols-3 gap-8 sm:gap-12 md:gap-16 mb-16 sm:mb-24">
-            <div className="space-y-4 sm:space-y-6">
-              <div className="text-5xl sm:text-6xl md:text-7xl font-serif text-primary/20">01</div>
-              <h3 className="font-serif text-2xl sm:text-3xl">Record</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                Through guided conversations, capture their stories, memories, and the moments that defined their life.
-              </p>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <div className="text-5xl sm:text-6xl md:text-7xl font-serif text-primary/20">02</div>
-              <h3 className="font-serif text-2xl sm:text-3xl">Enrich</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                Add photographs, family contributions, and context that brings the full story to life.
-              </p>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <div className="text-5xl sm:text-6xl md:text-7xl font-serif text-primary/20">03</div>
-              <h3 className="font-serif text-2xl sm:text-3xl">Preserve</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                Keep everything safe in your private family archive, accessible whenever you need to feel close.
-              </p>
-            </div>
-          </div>
-
-          <div className="max-w-4xl mx-auto bg-gradient-to-br from-accent/5 to-secondary/10 rounded-2xl p-8 sm:p-12 border border-primary/10">
-            <div className="text-center mb-8">
-              <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-                Experience Sample
-              </span>
-              <h3 className="font-serif text-2xl sm:text-3xl mb-3">Meet Sofia's grandmother, Maria</h3>
-              <p className="text-muted-foreground">See how her family preserved her stories for generations to come</p>
-            </div>
-
-            <div className="space-y-6">
-              <div className="bg-background rounded-xl p-6 shadow-sm">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex-1">
-                    <p className="font-medium mb-2">{currentStory.title}</p>
-                    <p className="text-sm text-muted-foreground mb-3">{currentStory.date}</p>
-                    <audio ref={audioRef} controls className="w-full" preload="metadata">
-                      <source src={currentStory.audio} type="audio/mpeg" />
-                      Your browser does not support the audio element.
-                    </audio>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-background rounded-xl p-6 shadow-sm">
-                <p className="font-medium mb-4">Listen to more of Maria's stories:</p>
-                <div className="space-y-3">
-                  {stories.map((story, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleStoryClick(story)}
-                      className="w-full text-left bg-accent/10 hover:bg-accent/20 rounded-lg p-4 text-sm transition-colors border border-transparent hover:border-primary/20"
-                    >
-                      <span className="flex items-center gap-2">
-                        <PlayIcon />
-                        {story.question}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* AI Persona Questions */}
-              <div className="bg-background rounded-xl p-6 shadow-sm">
-                <p className="font-medium mb-4">Ask Maria's AI persona anything:</p>
-                <div className="space-y-3">
-                  <div className="bg-accent/10 rounded-lg p-3 text-sm">
-                    "Tell me about your favorite family tradition"
-                  </div>
-                  <div className="bg-accent/10 rounded-lg p-3 text-sm">"What was life like when you were my age?"</div>
-                  <div className="bg-accent/10 rounded-lg p-3 text-sm">
-                    "Can you tell me more about that apple pie recipe?"
-                  </div>
-                </div>
-                <p className="text-xs text-muted-foreground mt-4 italic">
-                  The AI persona learns from recorded conversations to answer questions in Maria's own voice and style
-                </p>
-              </div>
-
-              {/* Memory Collection */}
-              <div className="bg-background rounded-xl p-6 shadow-sm">
-                <p className="font-medium mb-4">Memory collection includes:</p>
-                <div className="grid grid-cols-2 gap-3 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    12 audio recordings
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    47 photographs
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Written stories
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Family recipes
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center mt-8">
-              <a
-                href="#pricing"
-                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
-              >
-                Start your family's legacy
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SampleMemoryExperience />
 
       {/* Feature Showcase */}
       <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-accent/10">
