@@ -16,7 +16,7 @@ export const PRODUCTS: Product[] = [
     id: "cherished-moments",
     name: "Cherished Moments",
     description: "5 hours of memories - Perfect for capturing the most important stories",
-    priceInCents: 100, // €1 for testing (was €76)
+    priceInCents: 7600, // €76 Black Friday price (60% off)
     originalPriceInCents: 19000, // €190 original price
     hours: 5,
     features: [
