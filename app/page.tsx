@@ -187,27 +187,27 @@ function SampleMemoryExperience() {
   const stories = [
     {
       question: "Her secret apple pie recipe",
-      audio: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Reconnect%20Generations-ERfDvMErr0Bffa132Z7lGubhaStai8.mp3",
+      audio: "https://storage.googleapis.com/reconnectgenerations-audio/Reconnect%20Generations.mp3",
       date: "Recorded 2025-10-12",
       type: "file" as const,
     },
     {
       question: "What was your childhood like during the war?",
-      audio: "/audio/childhood-during-war.mp3",
+      audio: "https://storage.googleapis.com/reconnectgenerations-audio/childhood%20during%20the%20war.mp3",
       date: "Recorded 2024-03-15",
       type: "file" as const,
     },
     {
       question: "How did you meet grandpa?",
-      audio: "/audio/love-story.mp3",
+      audio: "https://storage.googleapis.com/reconnectgenerations-audio/love%20story.mp3",
       date: "Recorded 2024-06-22",
       type: "file" as const,
     },
     {
       question: "What life advice can you give me grandma?",
-      audio: "https://soundcloud.com/emilis-585379406/life-advice",
+      audio: "https://storage.googleapis.com/reconnectgenerations-audio/Life%20advice.mp3",
       date: "Recorded 2024-08-10",
-      type: "soundcloud" as const,
+      type: "file" as const,
     },
   ]
 
@@ -241,36 +241,20 @@ function SampleMemoryExperience() {
 
           <div className="space-y-6">
             {/* Single Shared Audio Player */}
-            <div className="bg-background rounded-xl p-6 shadow-sm">
+            {/* Now Playing Card */}
+            <div className="bg-background rounded-2xl p-6 sm:p-8 border border-border shadow-lg mb-6">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                <p className="text-sm text-primary font-medium">Now Playing</p>
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                <span className="text-sm font-medium text-primary">Now Playing</span>
               </div>
-              <p className="font-medium mb-2 text-lg">{currentStory.question}</p>
+
+              <h4 className="font-serif text-xl sm:text-2xl mb-2">{currentStory.question}</h4>
               <p className="text-sm text-muted-foreground mb-4">{currentStory.date}</p>
 
-              {currentStory.type === "soundcloud" ? (
-                <iframe
-                  width="100%"
-                  height="166"
-                  scrolling="no"
-                  frameBorder="no"
-                  allow="autoplay"
-                  src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(currentStory.audio)}&color=%23b88b74&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false`}
-                  className="rounded-lg"
-                ></iframe>
-              ) : (
-                <audio
-                  id="story-player"
-                  key={currentStory.audio}
-                  controls
-                  className="w-full rounded-lg"
-                  preload="metadata"
-                >
-                  <source src={currentStory.audio} type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
-              )}
+              <audio id="story-player" controls className="w-full rounded-lg" preload="metadata">
+                <source src={currentStory.audio} type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
             </div>
 
             {/* Story Selection Buttons */}
