@@ -1,13 +1,30 @@
 "use client"
 
+import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { useEffect, useState } from "react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { ExitIntentPopup } from "@/components/exit-intent-popup"
 
-// Simple inline icon components
 const ArrowRight = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12h14" />
+    <path d="m12 5 7 7-7 7" />
+  </svg>
+)
+
+const ArrowRightIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -36,7 +53,7 @@ const Check = () => (
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <path d="M20 6 9 17l-5-5" />
+    <polyline points="20 6 9 17 4 12" />
   </svg>
 )
 
@@ -75,9 +92,147 @@ const X = () => (
   </svg>
 )
 
+const Play = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <polygon points="5 3 19 12 5 21 5 3" />
+  </svg>
+)
+
+const Heart = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+  </svg>
+)
+
+const MessageCircle = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+  </svg>
+)
+
+const Globe = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+    <path d="M2 12h20" />
+  </svg>
+)
+
+const Star = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2" />
+  </svg>
+)
+
+function PlayIcon() {
+  return (
+    <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M8 5v14l11-7z" />
+    </svg>
+  )
+}
+
 export default function Home() {
   const [scrollY, setScrollY] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const [currentStory, setCurrentStory] = useState({
+    title: "Her secret apple pie recipe",
+    date: "Recorded April 2024",
+    audio: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Reconnect%20Generations-ERfDvMErr0Bffa132Z7lGubhaStai8.mp3",
+  })
+
+  const stories = [
+    {
+      question: "What was your childhood like during the war?",
+      title: "What was your childhood like during the war?",
+      date: "Recorded March 2024",
+      audio: "/audio/childhood-during-war.mp3",
+    },
+    {
+      question: "How did you meet grandpa?",
+      title: "How did you meet grandpa?",
+      date: "Recorded May 2024",
+      audio: "/audio/love-story.mp3",
+    },
+    {
+      question: "What life advice can you give me grandma?",
+      title: "What life advice can you give me grandma?",
+      date: "Recorded June 2024",
+      audio: "/audio/life-advice.mp3",
+    },
+  ]
+
+  const handleStoryClick = async (story: (typeof stories)[0]) => {
+    const audioElement = audioRef.current
+    if (!audioElement) return
+
+    // Pause current playback first
+    audioElement.pause()
+
+    // Update the story state
+    setCurrentStory(story)
+
+    // Small delay to ensure React has updated the source
+    await new Promise((resolve) => setTimeout(resolve, 50))
+
+    // Load and play the new audio
+    try {
+      audioElement.load()
+      await audioElement.play()
+    } catch (error) {
+      console.log("[v0] Audio play prevented:", error)
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -86,106 +241,96 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2 sm:gap-3">
+    <main className="min-h-screen bg-[#faf8f5]">
+      <ExitIntentPopup />
+
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#e8e4dd] bg-white/80 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3">
             <Image
-              src="/images/main-20logo.png"
+              src="/logo.png"
               alt="ReconnectGenerations"
-              width={32}
-              height={32}
-              className="object-contain sm:w-10 sm:h-10"
+              width={40}
+              height={40}
+              className="w-8 h-8 sm:w-10 sm:h-10"
             />
-            <span className="font-serif text-base sm:text-xl tracking-tight text-foreground">ReconnectGenerations</span>
-          </div>
+            <span className="font-serif text-base sm:text-lg md:text-xl text-[#6b5d52]">ReconnectGenerations</span>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-8 items-center">
-            <Link href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              About
-            </Link>
-            <Link href="#how" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              How it works
-            </Link>
-            <Link href="#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+            <a href="#how" className="text-sm lg:text-base text-[#6b5d52] hover:text-[#3d3530] transition-colors">
+              How It Works
+            </a>
+            <a href="#pricing" className="text-sm lg:text-base text-[#6b5d52] hover:text-[#3d3530] transition-colors">
               Pricing
-            </Link>
-            <Link href="#faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            </a>
+            <a href="#faq" className="text-sm lg:text-base text-[#6b5d52] hover:text-[#3d3530] transition-colors">
               FAQ
-            </Link>
+            </a>
             <Button
-              variant="outline"
-              size="sm"
-              className="rounded-full bg-transparent"
+              className="rounded-full bg-[#c97d5d] hover:bg-[#b76d4d] text-white text-sm lg:text-base px-4 lg:px-6"
               onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
             >
-              Get started
+              Start Preserving
             </Button>
-          </div>
+          </nav>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden text-[#6b5d52]"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur-sm">
-            <div className="px-4 py-4 space-y-4">
-              <Link
-                href="#about"
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link
+          <div className="md:hidden border-t border-[#e8e4dd] bg-white/95 backdrop-blur-sm">
+            <nav className="flex flex-col p-4 space-y-3">
+              <a
                 href="#how"
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="text-base text-[#6b5d52] hover:text-[#3d3530] py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                How it works
-              </Link>
-              <Link
+                How It Works
+              </a>
+              <a
                 href="#pricing"
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="text-base text-[#6b5d52] hover:text-[#3d3530] py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Pricing
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#faq"
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="text-base text-[#6b5d52] hover:text-[#3d3530] py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 FAQ
-              </Link>
+              </a>
               <Button
-                variant="outline"
-                className="w-full rounded-full bg-transparent"
+                className="rounded-full bg-[#c97d5d] hover:bg-[#b76d4d] text-white w-full"
                 onClick={() => {
                   setMobileMenuOpen(false)
                   document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })
                 }}
               >
-                Get started
+                Start Preserving
               </Button>
-            </div>
+            </nav>
           </div>
         )}
-      </nav>
+      </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 py-24 sm:py-20">
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 sm:py-24 md:py-32">
         <div className="absolute inset-0 overflow-hidden">
           <div
-            className="absolute inset-0 opacity-20"
+            className="absolute inset-0 opacity-10"
             style={{
               transform: `translateY(${scrollY * 0.5}px)`,
             }}
@@ -198,34 +343,55 @@ export default function Home() {
               priority
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background opacity-25" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background" />
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 text-balance tracking-tight leading-[1.1]">
-            Preserve the voices that matter most
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed text-pretty">
-            Record, protect, and share your family's stories. Their wisdom, their laughter, their legacy—forever.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-6 sm:space-y-8 md:space-y-10">
+          <div className="space-y-3 sm:space-y-4 md:space-y-6">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-balance tracking-tight leading-[1.1] sm:leading-[1.05] text-foreground px-2">
+              Preserve Your Parents' Stories Forever
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-foreground/80 max-w-3xl mx-auto leading-relaxed text-balance font-light px-4">
+              Record their voices, capture their memories, and let your family hear their stories anytime—even years
+              from now.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-5 sm:gap-6 pt-2 sm:pt-4">
             <Button
               size="lg"
-              className="rounded-full text-base sm:text-lg px-6 sm:px-8 h-12 sm:h-14"
+              className="rounded-full text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 h-12 sm:h-14 md:h-16 bg-[#c97d5d] hover:bg-[#b76d4d] text-white shadow-lg hover:shadow-xl transition-all w-auto"
               onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
             >
-              Start Preserving Memories
-              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              Start Preserving Now
+              <ArrowRightIcon className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="rounded-full text-base sm:text-lg px-6 sm:px-8 h-12 sm:h-14 bg-transparent"
-              onClick={() => document.getElementById("how")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              See How It Works
-            </Button>
+
+            <div className="flex flex-col items-center gap-2 sm:gap-3 text-sm sm:text-base">
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5" />
+                    ))}
+                  </div>
+                  <span className="font-medium text-foreground">4.9/5 from 277 families</span>
+                </div>
+                <span className="hidden sm:inline">•</span>
+                <span className="font-semibold text-foreground">Trustpilot</span>
+              </div>
+              <span className="px-4 py-1.5 bg-[#c97d5d]/10 text-[#c97d5d] rounded-full font-medium text-sm sm:text-base">
+                60% Off Black Friday Sale
+              </span>
+            </div>
           </div>
+
+          <button
+            onClick={() => document.getElementById("how")?.scrollIntoView({ behavior: "smooth" })}
+            className="text-muted-foreground hover:text-foreground transition-colors text-sm sm:text-base underline underline-offset-4 mt-4"
+          >
+            See how it works
+          </button>
         </div>
       </section>
 
@@ -293,13 +459,31 @@ export default function Home() {
               <div className="bg-background rounded-xl p-6 shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="flex-1">
-                    <p className="font-medium mb-2">Her secret apple pie recipe</p>
-                    <p className="text-sm text-muted-foreground mb-3">Recorded April 2024</p>
-                    <audio controls className="w-full" preload="metadata">
-                      <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Reconnect%20Generations-ERfDvMErr0Bffa132Z7lGubhaStai8.mp3" type="audio/mpeg" />
+                    <p className="font-medium mb-2">{currentStory.title}</p>
+                    <p className="text-sm text-muted-foreground mb-3">{currentStory.date}</p>
+                    <audio ref={audioRef} controls className="w-full" preload="metadata">
+                      <source src={currentStory.audio} type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
                   </div>
+                </div>
+              </div>
+
+              <div className="bg-background rounded-xl p-6 shadow-sm">
+                <p className="font-medium mb-4">Listen to more of Maria's stories:</p>
+                <div className="space-y-3">
+                  {stories.map((story, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleStoryClick(story)}
+                      className="w-full text-left bg-accent/10 hover:bg-accent/20 rounded-lg p-4 text-sm transition-colors border border-transparent hover:border-primary/20"
+                    >
+                      <span className="flex items-center gap-2">
+                        <PlayIcon />
+                        {story.question}
+                      </span>
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -308,11 +492,11 @@ export default function Home() {
                 <p className="font-medium mb-4">Ask Maria's AI persona anything:</p>
                 <div className="space-y-3">
                   <div className="bg-accent/10 rounded-lg p-3 text-sm">
-                    "What was your childhood like during the war?"
+                    "Tell me about your favorite family tradition"
                   </div>
-                  <div className="bg-accent/10 rounded-lg p-3 text-sm">"How did you meet grandpa?"</div>
+                  <div className="bg-accent/10 rounded-lg p-3 text-sm">"What was life like when you were my age?"</div>
                   <div className="bg-accent/10 rounded-lg p-3 text-sm">
-                    &quot;What life advice can you give me grandma?&quot;
+                    "Can you tell me more about that apple pie recipe?"
                   </div>
                 </div>
                 <p className="text-xs text-muted-foreground mt-4 italic">
@@ -478,20 +662,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Updated pricing section with new copy, structure, and pricing */}
       <section id="pricing" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-secondary/10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-balance tracking-tight">
               Choose your memory journey
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
               One-time payment. Lifetime access. Every package includes an AI persona that lets your family hear their
               stories anytime.
             </p>
-            <div className="mt-6 inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-full">
-              <span className="font-semibold text-sm sm:text-base">🎉 Black Friday Special</span>
-              <span className="text-sm sm:text-base">Save 60% • Limited time only</span>
+
+            <div className="max-w-2xl mx-auto mb-8">
+              <div className="bg-accent/20 border-2 border-[#c97d5d] rounded-2xl p-6">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <span className="font-semibold text-base sm:text-lg">🎉 Black Friday Special</span>
+                  <span className="text-base sm:text-lg">Save 60%</span>
+                </div>
+                <p className="text-sm sm:text-base text-muted-foreground">Limited time offer</p>
+              </div>
             </div>
           </div>
 
@@ -648,10 +837,6 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-sm leading-relaxed">Unlimited family access</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                   <span className="text-sm leading-relaxed">Secure storage forever</span>
                 </li>
                 <li className="flex items-start gap-3">
@@ -675,7 +860,7 @@ export default function Home() {
           {/* Trust and reassurance messaging below pricing */}
           <div className="mt-12 sm:mt-16 space-y-8">
             <p className="text-center text-sm text-muted-foreground">
-              All plans include lifetime access • EU servers & GDPR compliant • 30-day money-back guarantee
+              All plans include lifetime access • European data protection standards • 30-day money-back guarantee
             </p>
 
             <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 pt-8">
@@ -965,56 +1150,83 @@ export default function Home() {
               onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
             >
               Begin Your Family's Legacy
-              <ArrowRight />
+              <ArrowRightIcon />
             </Button>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
-            <div>
-              <h4 className="font-serif text-xl mb-4">ReconnectGenerations</h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Preserving family stories for future generations
-              </p>
+      <footer className="bg-[#3d3530] text-white py-12 sm:py-16 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <Image src="/logo.png" alt="ReconnectGenerations" width={32} height={32} className="w-8 h-8" />
+              <span className="font-serif text-lg">ReconnectGenerations</span>
             </div>
-            <div>
-              <h5 className="font-semibold mb-4 text-sm">Company</h5>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <Link href="/about" className="block hover:text-foreground transition-colors">
-                  About us
+            <p className="text-sm text-white/70 leading-relaxed">
+              Preserving family stories for future generations across Europe.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4 text-base">Product</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="#how" className="text-white/70 hover:text-white transition-colors">
+                  How It Works
+                </a>
+              </li>
+              <li>
+                <a href="#pricing" className="text-white/70 hover:text-white transition-colors">
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="text-white/70 hover:text-white transition-colors">
+                  FAQ
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4 text-base">Company</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/about" className="text-white/70 hover:text-white transition-colors">
+                  About Us
                 </Link>
-                <Link href="/contact" className="block hover:text-foreground transition-colors">
+              </li>
+              <li>
+                <Link href="/contact" className="text-white/70 hover:text-white transition-colors">
                   Contact
                 </Link>
-                <Link href="/privacy-policy" className="block hover:text-foreground transition-colors">
-                  Privacy policy
-                </Link>
-              </div>
-            </div>
-            <div>
-              <h5 className="font-semibold mb-4 text-sm">Support</h5>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <Link href="#faq" className="block hover:text-foreground transition-colors">
-                  FAQ
-                </Link>
-                <Link href="/contact" className="block hover:text-foreground transition-colors">
-                  Help center
-                </Link>
-                <Link href="/terms-of-service" className="block hover:text-foreground transition-colors">
-                  Terms of service
-                </Link>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
-          <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>© 2025 ReconnectGenerations. Made with care in Europe.</p>
+
+          <div>
+            <h4 className="font-semibold mb-4 text-base">Legal</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/privacy-policy" className="text-white/70 hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms-of-service" className="text-white/70 hover:text-white transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
+
+        <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 text-center text-sm text-white/70">
+          <p>&copy; 2025 ReconnectGenerations. All rights reserved.</p>
+        </div>
       </footer>
-    </div>
+    </main>
   )
 }

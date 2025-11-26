@@ -106,7 +106,8 @@ export default async function CheckoutPage({
                   <StarIcon />
                 </div>
                 <div className="text-sm text-[#6b5d52]">
-                  <span className="font-semibold">4.9</span> from <span className="font-semibold">277 families</span>
+                  <span className="font-semibold">4.9</span> from <span className="font-semibold">277 families</span> on{" "}
+                  <span className="font-semibold">Trustpilot</span>
                 </div>
               </div>
             </div>
@@ -124,6 +125,59 @@ export default async function CheckoutPage({
                     </li>
                   ))}
                 </ul>
+              </CardContent>
+            </Card>
+
+            {/* What happens next section */}
+            <Card className="border-[#c97d5d] bg-[#c97d5d]/5">
+              <CardContent className="p-6">
+                <h3 className="font-serif text-2xl mb-4 text-[#3d3530]">What happens after checkout?</h3>
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#c97d5d] text-white flex items-center justify-center font-semibold">
+                      1
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1 text-[#3d3530]">Instant access</h4>
+                      <p className="text-sm text-[#6b5d52]">
+                        Receive your welcome email with account details and getting started guide.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#c97d5d] text-white flex items-center justify-center font-semibold">
+                      2
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1 text-[#3d3530]">Schedule your session</h4>
+                      <p className="text-sm text-[#6b5d52]">
+                        Book a convenient time for recording. We'll guide you through the entire process.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#c97d5d] text-white flex items-center justify-center font-semibold">
+                      3
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1 text-[#3d3530]">Start recording</h4>
+                      <p className="text-sm text-[#6b5d52]">
+                        Begin capturing precious stories with our thoughtful conversation prompts.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#c97d5d] text-white flex items-center justify-center font-semibold">
+                      4
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1 text-[#3d3530]">Memories preserved forever</h4>
+                      <p className="text-sm text-[#6b5d52]">
+                        Your AI persona is created, and your family can access these memories anytime, anywhere.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
