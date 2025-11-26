@@ -11,6 +11,29 @@ export const metadata: Metadata = {
   title: "ReconnectGenerations | Preserve Your Family Legacy",
   description: "A timeless place to preserve your parents' stories, wisdom, and voice for future generations.",
   generator: "v0.app",
+  metadataBase: new URL("https://reconnectgenerations.eu"),
+  openGraph: {
+    title: "ReconnectGenerations | Preserve Your Family Legacy",
+    description: "A timeless place to preserve your parents' stories, wisdom, and voice for future generations.",
+    url: "https://reconnectgenerations.eu",
+    siteName: "ReconnectGenerations",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ReconnectGenerations - Preserve Your Family Legacy",
+      },
+    ],
+    locale: "en_EU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ReconnectGenerations | Preserve Your Family Legacy",
+    description: "A timeless place to preserve your parents' stories, wisdom, and voice for future generations.",
+    images: ["/og-image.jpg"],
+  },
   icons: {
     icon: [
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
