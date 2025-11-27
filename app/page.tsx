@@ -545,6 +545,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Founder Video Section */}
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6 text-balance">Meet the Founder</h2>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Learn how ReconnectGenerations helps families preserve their most precious memories for generations to
+              come
+            </p>
+          </div>
+
+          <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl bg-muted">
+            <video
+              controls
+              preload="metadata"
+              className="w-full h-full object-cover"
+              poster="/elderly-hands-holding-vintage-family-photograph-al.jpg"
+            >
+              <source
+                src="https://storage.googleapis.com/reconnectgenerations-video/Founder%20Video.mov"
+                type="video/quicktime"
+              />
+              <source
+                src="https://storage.googleapis.com/reconnectgenerations-video/Founder%20Video.mov"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div className="mt-8 sm:mt-12 text-center">
+            <p className="text-sm sm:text-base text-muted-foreground italic">
+              "Every family has stories that deserve to be remembered. We're here to help you preserve them."
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Statement Section */}
       <section id="about" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-secondary/20">
         <div className="max-w-4xl mx-auto">
