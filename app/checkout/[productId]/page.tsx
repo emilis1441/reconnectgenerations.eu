@@ -217,6 +217,74 @@ export default async function CheckoutPage({
             <div className="space-y-4">
               <h3 className="font-serif text-2xl text-[#3d3530]">What families are saying</h3>
 
+              <div className="grid md:grid-cols-3 gap-4 mb-6">
+                <div className="bg-white rounded-lg overflow-hidden shadow-lg border border-[#e8e4dd]">
+                  <video controls className="w-full aspect-[9/16] bg-black" preload="metadata">
+                    <source
+                      src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%202.mov"
+                      type="video/quicktime"
+                    />
+                    <source
+                      src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%202.mov"
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div className="p-3">
+                    <div className="flex gap-1 text-[#c97d5d] mb-1">
+                      {[...Array(5)].map((_, i) => (
+                        <StarIcon key={i} />
+                      ))}
+                    </div>
+                    <p className="text-xs text-[#6b5d52]">Real family experience</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg overflow-hidden shadow-lg border border-[#e8e4dd]">
+                  <video controls className="w-full aspect-[9/16] bg-black" preload="metadata">
+                    <source
+                      src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%203.MOV"
+                      type="video/quicktime"
+                    />
+                    <source
+                      src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%203.MOV"
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div className="p-3">
+                    <div className="flex gap-1 text-[#c97d5d] mb-1">
+                      {[...Array(5)].map((_, i) => (
+                        <StarIcon key={i} />
+                      ))}
+                    </div>
+                    <p className="text-xs text-[#6b5d52]">Emotional journey</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg overflow-hidden shadow-lg border border-[#e8e4dd]">
+                  <video controls className="w-full aspect-[9/16] bg-black" preload="metadata">
+                    <source
+                      src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%20Britas.mov"
+                      type="video/quicktime"
+                    />
+                    <source
+                      src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%20Britas.mov"
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div className="p-3">
+                    <div className="flex gap-1 text-[#c97d5d] mb-1">
+                      {[...Array(5)].map((_, i) => (
+                        <StarIcon key={i} />
+                      ))}
+                    </div>
+                    <p className="text-xs text-[#6b5d52]">Britas's story</p>
+                  </div>
+                </div>
+              </div>
+
               <Card className="border-[#e8e4dd] bg-white">
                 <CardContent className="p-6">
                   <div className="flex gap-1 text-[#c97d5d] mb-3">

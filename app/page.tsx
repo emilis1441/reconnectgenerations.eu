@@ -731,6 +731,113 @@ export default function Home() {
       {/* Testimonials */}
       <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto space-y-12 sm:space-y-16 md:space-y-20">
+          {/* Testimonials Section Title */}
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6 text-balance">
+              Hear from real families
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              See how families just like yours are preserving precious memories that will last forever
+            </p>
+          </div>
+
+          {/* Video Testimonials */}
+          <div className="grid md:grid-cols-3 gap-6 mb-16">
+            <div className="bg-card rounded-xl overflow-hidden shadow-lg border border-border">
+              <video controls className="w-full aspect-[9/16] bg-black" preload="metadata">
+                <source
+                  src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%202.mov"
+                  type="video/quicktime"
+                />
+                <source
+                  src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%202.mov"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+              <div className="p-4">
+                <div className="flex gap-1 text-primary mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground">Real family experience</p>
+              </div>
+            </div>
+
+            <div className="bg-card rounded-xl overflow-hidden shadow-lg border border-border">
+              <video controls className="w-full aspect-[9/16] bg-black" preload="metadata">
+                <source
+                  src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%203.MOV"
+                  type="video/quicktime"
+                />
+                <source
+                  src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%203.MOV"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+              <div className="p-4">
+                <div className="flex gap-1 text-primary mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground">Emotional preservation journey</p>
+              </div>
+            </div>
+
+            <div className="bg-card rounded-xl overflow-hidden shadow-lg border border-border">
+              <video controls className="w-full aspect-[9/16] bg-black" preload="metadata">
+                <source
+                  src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%20Britas.mov"
+                  type="video/quicktime"
+                />
+                <source
+                  src="https://storage.googleapis.com/reconnectgenerations-testimonials/Testimonial%20Britas.mov"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+              <div className="p-4">
+                <div className="flex gap-1 text-primary mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground">Britas's story</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Text Testimonials */}
           <div className="flex gap-4 sm:gap-6 md:gap-8 items-start">
             <div className="flex-shrink-0">
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-muted">
@@ -748,7 +855,7 @@ export default function Home() {
                 I wish I had done this years ago. Now my children can hear their grandfather tell stories about his
                 childhood, in his own words. It's the most precious gift.
               </p>
-              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— Elena M., Barcelona</cite>
+              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— Elena M. </cite>
             </div>
           </div>
 
@@ -769,7 +876,7 @@ export default function Home() {
                 When my mother passed, we had hours of her stories preserved. It brought comfort to the entire family
                 during the hardest time.
               </p>
-              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— Klaus R., Berlin</cite>
+              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— Klaus R. </cite>
             </div>
           </div>
 
@@ -790,7 +897,7 @@ export default function Home() {
                 My father never talked much about his past. This gave him the space to finally share everything. I
                 learned things I never knew.
               </p>
-              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— Sophie L., Paris</cite>
+              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— Sophie L.</cite>
             </div>
           </div>
         </div>
@@ -825,13 +932,13 @@ export default function Home() {
                 <h3 className="font-serif text-2xl sm:text-3xl mb-2">Cherished Moments</h3>
                 <p className="text-sm text-muted-foreground mb-4 sm:mb-6">5 hours of memories</p>
                 <div className="mb-2">
-                  <span className="text-sm text-muted-foreground line-through">€76</span>
+                  <span className="text-sm text-muted-foreground line-through">$30.40</span>
                   <span className="ml-2 text-xs bg-accent text-accent-foreground px-2 py-1 rounded-full font-semibold">
                     Save 60%
                   </span>
                 </div>
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="font-serif text-5xl sm:text-6xl">€15.20</span>
+                  <span className="font-serif text-5xl sm:text-6xl">$15.20</span>
                   <span className="text-sm sm:text-base text-muted-foreground">one-time</span>
                 </div>
                 <p className="text-sm text-muted-foreground">Perfect for capturing the most important stories</p>
@@ -881,13 +988,13 @@ export default function Home() {
                 <h3 className="font-serif text-2xl sm:text-3xl mb-2">Life's Journey</h3>
                 <p className="text-sm opacity-90 mb-4 sm:mb-6">15 hours of memories</p>
                 <div className="mb-2">
-                  <span className="text-sm opacity-75 line-through">€180</span>
+                  <span className="text-sm opacity-75 line-through">$72</span>
                   <span className="ml-2 text-xs bg-background text-foreground px-2 py-1 rounded-full font-semibold">
                     Save 60%
                   </span>
                 </div>
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="font-serif text-4xl sm:text-5xl">€36</span>
+                  <span className="font-serif text-4xl sm:text-5xl">$36</span>
                   <span className="text-sm sm:text-base opacity-90">one-time</span>
                 </div>
                 <p className="text-sm opacity-90">Tell the full story across different chapters of life</p>
@@ -940,13 +1047,13 @@ export default function Home() {
                 <h3 className="font-serif text-2xl sm:text-3xl mb-2">Complete Legacy</h3>
                 <p className="text-sm text-muted-foreground mb-4 sm:mb-6">30 hours of memories</p>
                 <div className="mb-2">
-                  <span className="text-sm text-muted-foreground line-through">€300</span>
+                  <span className="text-sm text-muted-foreground line-through">$120</span>
                   <span className="ml-2 text-xs bg-accent text-accent-foreground px-2 py-1 rounded-full font-semibold">
                     Save 60%
                   </span>
                 </div>
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="font-serif text-4xl sm:text-5xl">€60</span>
+                  <span className="font-serif text-4xl sm:text-5xl">$60</span>
                   <span className="text-sm sm:text-base text-muted-foreground">one-time</span>
                 </div>
                 <p className="text-sm text-muted-foreground">Preserve a lifetime of wisdom and memories</p>
@@ -1053,110 +1160,40 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-6 text-balance">
-              We speak your family's language
+              Available across English-speaking markets
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Record and preserve memories in any of 24 EU languages. Our AI understands and responds naturally in your
-              native tongue.
+              We proudly serve families across the United States, Canada, United Kingdom, Australia, and New Zealand.
+              Record and preserve memories in English with regional understanding.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇧🇬</div>
-              <p className="text-sm font-medium">Bulgarian</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 max-w-4xl mx-auto">
+            <div className="bg-background rounded-lg p-6 text-center hover:shadow-md transition-shadow">
+              <div className="text-4xl mb-3">🇺🇸</div>
+              <p className="text-base font-medium">United States</p>
             </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇭🇷</div>
-              <p className="text-sm font-medium">Croatian</p>
+            <div className="bg-background rounded-lg p-6 text-center hover:shadow-md transition-shadow">
+              <div className="text-4xl mb-3">🇨🇦</div>
+              <p className="text-base font-medium">Canada</p>
             </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇨🇿</div>
-              <p className="text-sm font-medium">Czech</p>
+            <div className="bg-background rounded-lg p-6 text-center hover:shadow-md transition-shadow">
+              <div className="text-4xl mb-3">🇬🇧</div>
+              <p className="text-base font-medium">United Kingdom</p>
             </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇩🇰</div>
-              <p className="text-sm font-medium">Danish</p>
+            <div className="bg-background rounded-lg p-6 text-center hover:shadow-md transition-shadow">
+              <div className="text-4xl mb-3">🇦🇺</div>
+              <p className="text-base font-medium">Australia</p>
             </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇳🇱</div>
-              <p className="text-sm font-medium">Dutch</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇪🇪</div>
-              <p className="text-sm font-medium">Estonian</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇫🇮</div>
-              <p className="text-sm font-medium">Finnish</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇫🇷</div>
-              <p className="text-sm font-medium">French</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇩🇪</div>
-              <p className="text-sm font-medium">German</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇬🇷</div>
-              <p className="text-sm font-medium">Greek</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇭🇺</div>
-              <p className="text-sm font-medium">Hungarian</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇮🇪</div>
-              <p className="text-sm font-medium">Irish</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇮🇹</div>
-              <p className="text-sm font-medium">Italian</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇱🇻</div>
-              <p className="text-sm font-medium">Latvian</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇱🇹</div>
-              <p className="text-sm font-medium">Lithuanian</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇲🇹</div>
-              <p className="text-sm font-medium">Maltese</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇵🇱</div>
-              <p className="text-sm font-medium">Polish</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇵🇹</div>
-              <p className="text-sm font-medium">Portuguese</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇷🇴</div>
-              <p className="text-sm font-medium">Romanian</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇸🇰</div>
-              <p className="text-sm font-medium">Slovak</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇸🇮</div>
-              <p className="text-sm font-medium">Slovenian</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇪🇸</div>
-              <p className="text-sm font-medium">Spanish</p>
-            </div>
-            <div className="bg-background rounded-lg p-4 text-center hover:shadow-md transition-shadow">
-              <div className="text-2xl mb-2">🇸🇪</div>
-              <p className="text-sm font-medium">Swedish</p>
+            <div className="bg-background rounded-lg p-6 text-center hover:shadow-md transition-shadow">
+              <div className="text-4xl mb-3">🇳🇿</div>
+              <p className="text-base font-medium">New Zealand</p>
             </div>
           </div>
 
-          <p className="text-center text-sm text-muted-foreground mt-8 italic">More languages coming soon</p>
+          <p className="text-center text-sm text-muted-foreground mt-8 italic">
+            More languages and regions coming soon
+          </p>
         </div>
       </section>
 
