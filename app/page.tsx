@@ -410,7 +410,10 @@ export default function Home() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <a href="#how" className="text-sm lg:text-base text-[#6b5d52] hover:text-[#3d3530] transition-colors">
+            <a
+              href="#how-it-works"
+              className="text-sm lg:text-base text-[#6b5d52] hover:text-[#3d3530] transition-colors"
+            >
               How It Works
             </a>
             <a href="#pricing" className="text-sm lg:text-base text-[#6b5d52] hover:text-[#3d3530] transition-colors">
@@ -442,7 +445,7 @@ export default function Home() {
           <div className="md:hidden border-t border-[#e8e4dd] bg-white/95 backdrop-blur-sm">
             <nav className="flex flex-col p-4 space-y-3">
               <a
-                href="#how"
+                href="#how-it-works"
                 className="text-base text-[#6b5d52] hover:text-[#3d3530] py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -537,7 +540,7 @@ export default function Home() {
           </div>
 
           <button
-            onClick={() => document.getElementById("how")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
             className="text-muted-foreground hover:text-foreground transition-colors text-sm sm:text-base underline underline-offset-4 mt-4"
           >
             See how it works
@@ -583,6 +586,87 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How it Works Section with step-by-step process */}
+      <section id="how-it-works" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-secondary/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6 text-balance">How It Works</h2>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+              Preserving your family's memories is simple. Follow these four steps to create a lasting legacy.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            {/* Step 1 */}
+            <div className="bg-background rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="text-xl font-bold text-primary">1</span>
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl mb-3">Choose Your Plan</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Select the package that fits your family's story. From cherished moments to complete legacy, we have
+                    options for every family's needs.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-background rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="text-xl font-bold text-primary">2</span>
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl mb-3">Set Up Your Space</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Create your private family memory space in minutes. Invite family members and organize your stories
+                    in one secure location.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-background rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="text-xl font-bold text-primary">3</span>
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl mb-3">Start Recording</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Use our guided questions or simply have a conversation. Record in any of 24 EU languages with ease.
+                    Every word is captured and preserved.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="bg-background rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="text-xl font-bold text-primary">4</span>
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl mb-3">Preserve Forever</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Share with family and revisit memories anytime, anywhere. The AI persona brings their voice back to
+                    life for generations to come.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sample Memory Experience Section (Moved after How It Works) */}
+      <SampleMemoryExperience />
+
       {/* Statement Section */}
       <section id="about" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-secondary/20">
         <div className="max-w-4xl mx-auto">
@@ -596,9 +680,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
-      {/* How It Works - Enhanced with Interactive Demo */}
-      <SampleMemoryExperience />
 
       {/* Feature Showcase */}
       <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-accent/10">
@@ -1222,7 +1303,7 @@ export default function Home() {
             <h4 className="font-semibold mb-4 text-base">Product</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#how" className="text-white/70 hover:text-white transition-colors">
+                <a href="#how-it-works" className="text-white/70 hover:text-white transition-colors">
                   How It Works
                 </a>
               </li>
