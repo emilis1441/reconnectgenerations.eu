@@ -770,7 +770,7 @@ export default function Home() {
                     </svg>
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground">Real family experience</p>
+                <p className="text-sm font-semibold text-foreground">Lucas and Gabriel</p>
               </div>
             </div>
 
@@ -801,7 +801,7 @@ export default function Home() {
                     </svg>
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground">Emotional preservation journey</p>
+                <p className="text-sm font-semibold text-foreground">Adi</p>
               </div>
             </div>
 
@@ -832,7 +832,7 @@ export default function Home() {
                     </svg>
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground">Britas's story</p>
+                <p className="text-sm font-semibold text-foreground">Jacob</p>
               </div>
             </div>
           </div>
@@ -843,7 +843,7 @@ export default function Home() {
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-muted">
                 <Image
                   src="/mature-woman-smiling-professional-portrait-headsho.jpg"
-                  alt="Elena M."
+                  alt="Sarah M."
                   width={80}
                   height={80}
                   className="object-cover"
@@ -855,7 +855,7 @@ export default function Home() {
                 I wish I had done this years ago. Now my children can hear their grandfather tell stories about his
                 childhood, in his own words. It's the most precious gift.
               </p>
-              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— Elena M. </cite>
+              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— Sarah M., Austin, TX</cite>
             </div>
           </div>
 
@@ -864,7 +864,7 @@ export default function Home() {
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-muted">
                 <Image
                   src="/mature-man-smiling-professional-portrait-headshot.jpg"
-                  alt="Klaus R."
+                  alt="James T."
                   width={80}
                   height={80}
                   className="object-cover"
@@ -876,7 +876,7 @@ export default function Home() {
                 When my mother passed, we had hours of her stories preserved. It brought comfort to the entire family
                 during the hardest time.
               </p>
-              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— Klaus R. </cite>
+              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— James T., Toronto, ON</cite>
             </div>
           </div>
 
@@ -885,7 +885,7 @@ export default function Home() {
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-muted">
                 <Image
                   src="/mature-woman-professional-portrait-headshot-smilin.jpg"
-                  alt="Sophie L."
+                  alt="Emma W."
                   width={80}
                   height={80}
                   className="object-cover"
@@ -897,7 +897,7 @@ export default function Home() {
                 My father never talked much about his past. This gave him the space to finally share everything. I
                 learned things I never knew.
               </p>
-              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— Sophie L.</cite>
+              <cite className="text-sm sm:text-base text-muted-foreground not-italic">— Emma W., London, UK</cite>
             </div>
           </div>
         </div>

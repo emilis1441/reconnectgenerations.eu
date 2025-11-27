@@ -236,7 +236,7 @@ export default async function CheckoutPage({
                         <StarIcon key={i} />
                       ))}
                     </div>
-                    <p className="text-xs text-[#6b5d52]">Real family experience</p>
+                    <p className="text-sm font-semibold text-[#3d3530]">Lucas and Gabriel</p>
                   </div>
                 </div>
 
@@ -258,7 +258,7 @@ export default async function CheckoutPage({
                         <StarIcon key={i} />
                       ))}
                     </div>
-                    <p className="text-xs text-[#6b5d52]">Emotional journey</p>
+                    <p className="text-sm font-semibold text-[#3d3530]">Adi</p>
                   </div>
                 </div>
 
@@ -280,7 +280,7 @@ export default async function CheckoutPage({
                         <StarIcon key={i} />
                       ))}
                     </div>
-                    <p className="text-xs text-[#6b5d52]">Britas's story</p>
+                    <p className="text-sm font-semibold text-[#3d3530]">Jacob</p>
                   </div>
                 </div>
               </div>
@@ -307,8 +307,8 @@ export default async function CheckoutPage({
                       className="w-12 h-12 rounded-full object-cover"
                     />
                     <div>
-                      <p className="font-semibold text-[#3d3530]">Henrik M.</p>
-                      <p className="text-sm text-[#6b5d52]">Copenhagen, Denmark</p>
+                      <p className="font-semibold text-[#3d3530]">Michael K.</p>
+                      <p className="text-sm text-[#6b5d52]">Sydney, Australia</p>
                     </div>
                   </div>
                 </CardContent>
@@ -336,8 +336,8 @@ export default async function CheckoutPage({
                       className="w-12 h-12 rounded-full object-cover"
                     />
                     <div>
-                      <p className="font-semibold text-[#3d3530]">Sophie L.</p>
-                      <p className="text-sm text-[#6b5d52]">Lyon, France</p>
+                      <p className="font-semibold text-[#3d3530]">Jennifer S.</p>
+                      <p className="text-sm text-[#6b5d52]">Vancouver, Canada</p>
                     </div>
                   </div>
                 </CardContent>
@@ -354,7 +354,7 @@ export default async function CheckoutPage({
                   </div>
                   <p className="text-[#6b5d52] mb-4 italic">
                     "The process was so simple and respectful. They made my father feel comfortable sharing things he'd
-                    never told us before. Worth every euro."
+                    never told us before. Worth every dollar."
                   </p>
                   <div className="flex items-center gap-3">
                     <Image
@@ -365,8 +365,8 @@ export default async function CheckoutPage({
                       className="w-12 h-12 rounded-full object-cover"
                     />
                     <div>
-                      <p className="font-semibold text-[#3d3530]">Maria G.</p>
-                      <p className="text-sm text-[#6b5d52]">Madrid, Spain</p>
+                      <p className="font-semibold text-[#3d3530]">Rachel P.</p>
+                      <p className="text-sm text-[#6b5d52]">Auckland, New Zealand</p>
                     </div>
                   </div>
                 </CardContent>
