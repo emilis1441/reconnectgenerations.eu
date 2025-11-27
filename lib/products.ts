@@ -16,7 +16,7 @@ export const PRODUCTS: Product[] = [
     id: "cherished-moments",
     name: "Cherished Moments",
     description: "5 hours of memories - Perfect for capturing the most important stories",
-    priceInCents: 7600, // €76 Black Friday price (60% off)
+    priceInCents: 1520, // €15.20 (80% off original €76)
     originalPriceInCents: 19000, // €190 original price
     hours: 5,
     features: [
@@ -32,7 +32,7 @@ export const PRODUCTS: Product[] = [
     id: "lifes-journey",
     name: "Life's Journey",
     description: "15 hours of memories - Tell the full story across different chapters of life",
-    priceInCents: 18000, // €180 Black Friday price (60% off)
+    priceInCents: 3600, // €36 (80% off original €180)
     originalPriceInCents: 45000, // €450 original price
     hours: 15,
     features: [
@@ -49,7 +49,7 @@ export const PRODUCTS: Product[] = [
     id: "complete-legacy",
     name: "Complete Legacy",
     description: "30 hours of memories - Preserve a lifetime of wisdom and memories",
-    priceInCents: 30000, // €300 Black Friday price (60% off)
+    priceInCents: 6000, // €60 (80% off original €300)
     originalPriceInCents: 75000, // €750 original price
     hours: 30,
     features: [

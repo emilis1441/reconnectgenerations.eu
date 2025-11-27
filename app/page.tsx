@@ -483,20 +483,20 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 sm:py-24 md:py-32">
         <div className="absolute inset-0 overflow-hidden">
           <div
-            className="absolute inset-0 opacity-10"
+            className="absolute inset-0 opacity-20"
             style={{
               transform: `translateY(${scrollY * 0.5}px)`,
             }}
           >
             <Image
-              src="/elderly-hands-holding-vintage-family-photograph-al.jpg"
+              src="/images/hero-family-generations-warm-together.jpg"
               alt=""
               fill
               className="object-cover"
               priority
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/85 to-background opacity-40" />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center space-y-6 sm:space-y-8 md:space-y-10">
@@ -511,14 +511,25 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center gap-5 sm:gap-6 pt-2 sm:pt-4">
-            <Button
-              size="lg"
-              className="rounded-full text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 h-12 sm:h-14 md:h-16 bg-[#c97d5d] hover:bg-[#b76d4d] text-white shadow-lg hover:shadow-xl transition-all w-auto"
-              onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Start Preserving Now
-              <ArrowRightIcon className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-            </Button>
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+              <Button
+                size="lg"
+                className="rounded-full text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 h-12 sm:h-14 md:h-16 bg-[#c97d5d] hover:bg-[#b76d4d] text-white shadow-lg hover:shadow-xl transition-all w-auto"
+                onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                Start Preserving Now
+                <ArrowRightIcon />
+              </Button>
+
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 h-12 sm:h-14 md:h-16 border-2 border-[#c97d5d] text-[#c97d5d] hover:bg-[#c97d5d]/10 transition-all w-auto bg-transparent"
+                onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                See How It Works
+              </Button>
+            </div>
 
             <div className="flex flex-col items-center gap-2 sm:gap-3 text-sm sm:text-base">
               <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-muted-foreground">
@@ -538,13 +549,6 @@ export default function Home() {
               </span>
             </div>
           </div>
-
-          <button
-            onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
-            className="text-muted-foreground hover:text-foreground transition-colors text-sm sm:text-base underline underline-offset-4 mt-4"
-          >
-            See how it works
-          </button>
         </div>
       </section>
 
@@ -821,13 +825,13 @@ export default function Home() {
                 <h3 className="font-serif text-2xl sm:text-3xl mb-2">Cherished Moments</h3>
                 <p className="text-sm text-muted-foreground mb-4 sm:mb-6">5 hours of memories</p>
                 <div className="mb-2">
-                  <span className="text-sm text-muted-foreground line-through">€190</span>
+                  <span className="text-sm text-muted-foreground line-through">€76</span>
                   <span className="ml-2 text-xs bg-accent text-accent-foreground px-2 py-1 rounded-full font-semibold">
                     Save 60%
                   </span>
                 </div>
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="font-serif text-5xl sm:text-6xl">€76</span>
+                  <span className="font-serif text-5xl sm:text-6xl">€15.20</span>
                   <span className="text-sm sm:text-base text-muted-foreground">one-time</span>
                 </div>
                 <p className="text-sm text-muted-foreground">Perfect for capturing the most important stories</p>
@@ -877,13 +881,13 @@ export default function Home() {
                 <h3 className="font-serif text-2xl sm:text-3xl mb-2">Life's Journey</h3>
                 <p className="text-sm opacity-90 mb-4 sm:mb-6">15 hours of memories</p>
                 <div className="mb-2">
-                  <span className="text-sm opacity-75 line-through">€450</span>
+                  <span className="text-sm opacity-75 line-through">€180</span>
                   <span className="ml-2 text-xs bg-background text-foreground px-2 py-1 rounded-full font-semibold">
                     Save 60%
                   </span>
                 </div>
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="font-serif text-4xl sm:text-5xl">€180</span>
+                  <span className="font-serif text-4xl sm:text-5xl">€36</span>
                   <span className="text-sm sm:text-base opacity-90">one-time</span>
                 </div>
                 <p className="text-sm opacity-90">Tell the full story across different chapters of life</p>
@@ -936,13 +940,13 @@ export default function Home() {
                 <h3 className="font-serif text-2xl sm:text-3xl mb-2">Complete Legacy</h3>
                 <p className="text-sm text-muted-foreground mb-4 sm:mb-6">30 hours of memories</p>
                 <div className="mb-2">
-                  <span className="text-sm text-muted-foreground line-through">€750</span>
+                  <span className="text-sm text-muted-foreground line-through">€300</span>
                   <span className="ml-2 text-xs bg-accent text-accent-foreground px-2 py-1 rounded-full font-semibold">
                     Save 60%
                   </span>
                 </div>
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="font-serif text-4xl sm:text-5xl">€300</span>
+                  <span className="font-serif text-4xl sm:text-5xl">€60</span>
                   <span className="text-sm sm:text-base text-muted-foreground">one-time</span>
                 </div>
                 <p className="text-sm text-muted-foreground">Preserve a lifetime of wisdom and memories</p>
