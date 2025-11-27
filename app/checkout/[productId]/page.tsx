@@ -383,10 +383,10 @@ export default async function CheckoutPage({
                     <h2 className="font-serif text-2xl text-[#3d3530]">Complete your order</h2>
                     <div className="text-right">
                       <div className="text-sm text-[#6b5d52] line-through mb-1">
-                        €{(product.originalPriceInCents / 100).toFixed(0)}
+                        ${(product.originalPriceInCents / 100).toFixed(0)}
                       </div>
                       <div className="font-serif text-3xl text-[#3d3530]">
-                        €{(product.priceInCents / 100).toFixed(0)}
+                        ${(product.priceInCents / 100).toFixed(0)}
                       </div>
                       <div className="text-sm text-[#6b5d52]">one-time payment</div>
                       <div className="text-xs bg-[#c97d5d] text-white px-2 py-1 rounded-full inline-block mt-1">
